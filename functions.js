@@ -18,10 +18,11 @@ module.exports = {
 
     if (!target) target = message.member;
 
-    return target
+    return target;
   },
 
   formatDate: function(date) {
-    return new Intl.DateTimeFormat('en-US').format(date);
+    return new Intl.DateTimeFormat("en-US").format(date);
+  },
   }
 };
