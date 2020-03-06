@@ -1,10 +1,10 @@
 const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 
-const client = new Client();
-
 const config = require("./serverinfo.js");
 const prefix = config.prefix;
+
+const client = new Client();
 
 client.commands = new Collection();
 client.aliases = new Collection();
