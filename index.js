@@ -10,7 +10,7 @@ client.commands = new Collection();
 client.aliases = new Collection();
 
 client.once("ready", () => {
-  require("./events/ready.js").run(client)
+  require("./events/ready.js").run(client);
 });
 
 ["command"].forEach(handler => {
