@@ -2,7 +2,10 @@
   "name": "dbdbmbot",
   "version": "1.0.0",
   "description": "A general purpose discord bot",
-  "repository": {"type": "git", "url": "https://github.com/ent3r/dbdbmbot"},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ent3r/dbdbmbot"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
