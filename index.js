@@ -6,6 +6,10 @@ const prefix = config.prefix;
 
 const client = new Client();
 
+client.announcements = JSON.parse(
+  fs.readFileSync("data/announcements.json", "utf-8")
+);
+client.my_config = config;
 client.commands = new Collection();
 client.aliases = new Collection();
 
