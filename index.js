@@ -1,5 +1,6 @@
 const { Client, Collection } = require("discord.js");
 const fs = require("fs");
+const parser = require("discord-command-parser")
 
 const config = require("./serverinfo.js");
 const prefix = config.prefix;
@@ -22,25 +23,14 @@ client.once("ready", () => {
 });
 
 client.on("message", async message => {
-  if (message.author.bot) return;
-  if (message.guild) {
-  }
-  if (!message.content.startsWith(prefix)) return;
-  if (!message.member)
-    message.member = await message.guild.fetchMember(message);
+  const parsed = parser.parse(message, prefix);
+  if (!parsed.success) return;
+  if (!message.guild) return;
 
-  const args = message.content
-    .slice(prefix.length)
-    .trim()
-    .split(/ +/g);
-  const cmd = args.shift().toLowerCase();
+  let command = client.commands.get(parsed.command);
+  if (!command) command = client.commands.get(client.aliases.get(parsed.command));
 
-  if (cmd.length === 0) return;
-
-  let command = client.commands.get(cmd);
-  if (!command) command = client.commands.get(client.aliases.get(cmd));
-
-  if (command) command.run(client, message, args);
+  if (command) command.run(client, message, parsed.arguments);
 });
 
 client.login(config.token);
