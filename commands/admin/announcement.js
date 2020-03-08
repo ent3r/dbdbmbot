@@ -1,26 +1,30 @@
 const { MessageEmbed, Client } = require("discord.js");
-const { getChannelFromMention } = require("../../functions.js");
+const {
+  getChannelFromMention,
+  updateAnnouncementsDB
+} = require("../../functions.js");
 const fs = require("fs");
 
 module.exports = {
   name: "announcement",
   aliases: ["announce"],
-  roles: ["Owner"],
+  roles: ["owner"],
   category: "notif",
   description: "Makes a new announcement",
   usage:
     '< channel | channel id > < ateveryone (true|false) > < "title" > < "message" > ',
   enabled: true,
   run: async (client, message, args) => {
-    let channel = getChannelFromMention(client, args[0]);
-
+    const channel = getChannelFromMention(client, args[0]);
     const everyone = args[1] === "true";
-    let announcement = message.toString().match(/("[^"]+") ("[^"]+")/);
+    const title = args[2];
+    const announcement = args[3];
 
     const announcementEmbed = new MessageEmbed()
-      .setTitle(announcement[1].slice(1, -1))
-      .setAuthor(message.author.username, message.author.avatarURL())
-      .addField("----------------", announcement[2].slice(1, -1));
+      .setTitle(title)
+      .setAuthor(message.author.username)
+      .setTimestamp()
+      .addField("----------------", announcement);
     const msg = await channel
       .send(announcementEmbed)
       .then(m => m.edit(announcementEmbed.setFooter(m.id)));
@@ -30,17 +34,11 @@ module.exports = {
       id: msg.id,
       authors: [message.author],
       channel: msg.channel.id,
-      message: announcement[2].slice(1, -1),
-      title: announcement[1].slice(1, -1),
-      raw_object: msg
+      msg: msg
     };
 
-    client.announcements.recent_announcement = jsonElement.id;
     client.announcements.announcements.push(jsonElement);
 
-    fs.writeFileSync(
-      `${client.my_config.bot_root}/data/announcements.json`,
-      JSON.stringify(client.announcements)
-    );
+    updateAnnouncementsDB(client);
   }
 };
