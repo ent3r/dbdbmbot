@@ -1,6 +1,6 @@
 const { Client, Collection, MessageEmbed } = require("discord.js");
 const fs = require("fs");
-const parser = require("discord-command-parser")
+const parser = require("discord-command-parser");
 
 const config = require("./serverinfo.js");
 const prefix = config.prefix;
