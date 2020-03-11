@@ -14,7 +14,7 @@ client.my_config = config;
 client.commands = new Collection();
 client.aliases = new Collection();
 
-client.once("ready", () => {
+client.on("ready", () => {
   require("./events/ready.js").run(client);
 });
 
