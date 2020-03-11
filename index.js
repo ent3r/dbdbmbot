@@ -29,6 +29,11 @@ client.on("message", async message => {
     console.log(`${parsed.code}: ${parsed.error}`);
     return;
   }
+  if (!message.guild) {
+    // It's a DM
+    message.channel.send("This bot does not work in DMs");
+    return;
+  }
 
   let command = client.commands.get(parsed.command);
   if (!command) command = client.commands.get(client.aliases.get(parsed.command));
