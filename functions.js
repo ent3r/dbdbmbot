@@ -3,7 +3,7 @@ const fs = require("fs");
 module.exports = {
   getMember: function(message, toFind = "") {
     toFind = toFind.toLowerCase();
-
+    if (message.contains("@everyone")) return;
     let target = message.guild.members.cache.get(toFind);
 
     if (!target && message.mentions.members)
