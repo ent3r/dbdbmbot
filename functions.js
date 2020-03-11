@@ -53,12 +53,5 @@ module.exports = {
     const id = matches[1];
 
     return client.channels.cache.get(id);
-  },
-
-  updateAnnouncementsDB: function(client) {
-    fs.writeFileSync(
-      `${client.my_config.bot_root}/data/announcements.json`,
-      JSON.stringify(client.announcements)
-    );
   }
 };

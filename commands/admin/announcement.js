@@ -25,20 +25,10 @@ module.exports = {
       .setAuthor(message.author.username)
       .setTimestamp()
       .addField("----------------", announcement);
-    const msg = await channel
+    channel
       .send(announcementEmbed)
       .then(m => m.edit(announcementEmbed.setFooter(m.id)));
     if (everyone) channel.send("@everyone");
 
-    const jsonElement = {
-      id: msg.id,
-      authors: [message.author],
-      channel: msg.channel.id,
-      msg: msg
-    };
-
-    client.announcements.announcements.push(jsonElement);
-
-    updateAnnouncementsDB(client);
   }
 };

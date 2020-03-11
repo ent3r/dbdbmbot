@@ -13,11 +13,9 @@ module.exports = {
     '< announcementID > < prepend|replace|append > < title|body|both > [ "new title" ] [ "new message" ]',
   enabled: true,
   run: async (client, message, args) => {
-    const announcement = client.announcements.announcements.find(
-      item => item.id == args[0]
-    );
-    const announcementMsg = announcement.msg;
-    let newEmbed = announcementMsg.embeds[0];
+    const announcement = await message.channel.messages.fetch(args[0]);
+
+    let newEmbed = announcement.embeds[0];
     const mode = args[1].toLowerCase();
     const what = args[2].toLowerCase();
     let newTitle = newEmbed.title;
@@ -73,6 +71,5 @@ module.exports = {
     newEmbed.title = newTitle;
     newEmbed.fields[0].value = newMsg;
     message.channel.messages.fetch(args[0]).then(m => m.edit(newEmbed));
-    updateAnnouncementsDB(client);
   }
 };
