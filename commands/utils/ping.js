@@ -2,8 +2,11 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "ping",
+  aliases: [],
+  roles: [],
   category: "utils",
   description: "Returns latency and API ping",
+  usage: "",
   run: async (client, message, args) => {
     const embed = new MessageEmbed().setTitle("Pinging...").setColor("#FFCC00");
     message.channel.send(embed).then(m => {
