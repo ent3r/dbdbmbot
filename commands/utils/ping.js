@@ -16,7 +16,7 @@ module.exports = {
           "Round trip latency",
           `${Math.floor(m.createdAt - message.createdAt)}ms`
         )
-        .addField("Discord API Latency", `${Math.round(client.ping)}ms`);
+        .addField("Discord API Latency", `${Math.round(client.ws.ping)}ms`);
 
       m.edit(embed);
     });
