@@ -24,8 +24,11 @@ client.once("ready", () => {
 
 client.on("message", async message => {
   const parsed = parser.parse(message, prefix);
-  if (!parsed.success) return;
-  if (!message.guild) return;
+  if (!parsed.success) {
+    // Something failed parsing the message
+    console.log(`${parsed.code}: ${parsed.error}`);
+    return;
+  }
 
   let command = client.commands.get(parsed.command);
   if (!command) command = client.commands.get(client.aliases.get(parsed.command));
