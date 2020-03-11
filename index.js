@@ -36,7 +36,8 @@ client.on("message", async message => {
   }
 
   let command = client.commands.get(parsed.command);
-  if (!command) command = client.commands.get(client.aliases.get(parsed.command));
+  if (!command)
+    command = client.commands.get(client.aliases.get(parsed.command));
 
   if (command) command.run(client, message, parsed.arguments);
 });
