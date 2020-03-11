@@ -1,4 +1,4 @@
-const { Client, Collection } = require("discord.js");
+const { Client, Collection, MessageEmbed } = require("discord.js");
 const fs = require("fs");
 const parser = require("discord-command-parser")
 
@@ -39,7 +39,17 @@ client.on("message", async message => {
   if (!command)
     command = client.commands.get(client.aliases.get(parsed.command));
 
-  if (command) command.run(client, message, parsed.arguments);
+  if (command) {
+    command.run(client, message, parsed.arguments);
+  } else {
+    const errorEmbed = new MessageEmbed()
+      .setColor("#FF0000")
+      .setTitle("Error")
+      .setThumbnail()
+      .setURL("https://github.com/ent3r/dbdbmbot")
+      .setDescription(`Command \`${parsed.command}\` was not found`);
+    message.channel.send(errorEmbed);
+  }
 });
 
 client.login(config.token);
