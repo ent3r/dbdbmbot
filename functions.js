@@ -1,7 +1,7 @@
 module.exports = {
   getMember: function(message, toFind = "") {
     toFind = toFind.toLowerCase();
-    if (message.contains("@everyone")) return;
+    if ("@everyone" in message) return;
     let target = message.guild.members.cache.get(toFind);
 
     if (!target && message.mentions.members)
