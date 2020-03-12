@@ -109,5 +109,11 @@ module.exports = {
     newEmbed.title = newTitle;
     newEmbed.description = newMsg;
     message.channel.messages.fetch(args[0]).then(m => m.edit(newEmbed));
+    message.delete();
+    message.channel.send(`Edited message with ID ${args[0]}`).then(m =>
+      setTimeout(function() {
+        m.delete();
+      }, 4000)
+    );
   }
 };
