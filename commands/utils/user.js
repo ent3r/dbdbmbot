@@ -10,7 +10,10 @@ module.exports = {
   usage: "[username | id | mention]",
   run: async (client, message, args) => {
     const member = getMember(message, args.join(" "));
-
+    if (!member) {
+      message.channel.send("Could not find that user");
+      return;
+    }
     const joined = formatDate(member.joinedAt);
     const roles =
       member.roles.cache
