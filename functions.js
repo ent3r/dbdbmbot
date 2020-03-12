@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 module.exports = {
   getMember: function(message, toFind = "") {
     toFind = toFind.toLowerCase();
