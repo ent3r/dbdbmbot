@@ -22,13 +22,12 @@ module.exports = {
 
     const announcementEmbed = new MessageEmbed()
       .setTitle(title)
-      .setAuthor(message.author.username)
       .setTimestamp()
-      .addField("----------------", announcement);
+      .setDescription(announcement);
     channel
       .send(announcementEmbed)
       .then(m => m.edit(announcementEmbed.setFooter(m.id)));
+    announcementEmbed.embed_type = "announcement";
     if (everyone) channel.send("@everyone");
-
   }
 };
