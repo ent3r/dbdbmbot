@@ -7,6 +7,14 @@ module.exports = {
   category: "utils",
   description: "Returns latency and API ping",
   usage: "",
+  /**
+   *Shows channel ping
+   *
+   * @param {Client} client the client object
+   * @param {Message} message the whole message
+   * @param {Array} args arguments (Not used here)
+   * @returns null
+   */
   run: async (client, message, args) => {
     const embed = new MessageEmbed().setTitle("Pinging...").setColor("#FFCC00");
     message.channel.send(embed).then(m => {
