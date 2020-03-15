@@ -35,7 +35,7 @@ module.exports = {
    * @returns the formatted string
    */
   formatDate: function(date) {
-    return new Intl.DateTimeFormat("en-US").format(date);
+    return new Intl.DateTimeFormat("nb-NO").format(date);
   },
 
   getUserFromMention: function(client, mention) {
