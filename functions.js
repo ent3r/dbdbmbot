@@ -1,3 +1,5 @@
+const { MessageEmbed, User, Client } = require("discord.js");
+
 module.exports = {
   /**
    *Gets a member from a string
@@ -55,6 +57,8 @@ module.exports = {
     const id = matches[1];
 
     return client.channels.cache.get(id);
+  },
+
   /**
    *Logs an event to the logging channel specified in the config
    *
@@ -64,5 +68,21 @@ module.exports = {
    * @param {User} commandAuthor who ran the command
    * @returns null
    */
+  logEvent: async function(client, type, event, commandAuthor) {
+    const logEmbed = new MessageEmbed();
+    logEmbed
+      .setTitle(type)
+      .setDescription(event)
+      .setFooter(commandAuthor.tag)
+      .setTimestamp()
+      .setColor("#FF0000");
+    const logChannel = await client.channels.fetch(
+      client.my_config.channels.logs
+    );
+    if (!logChannel) {
+      console.log("Invalid logging channel");
+      return;
+    }
+    logChannel.send(logEmbed);
   }
 };
