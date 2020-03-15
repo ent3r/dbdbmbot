@@ -31,5 +31,6 @@ module.exports = {
 
       m.edit(embed);
     });
+    return;
   }
 };
