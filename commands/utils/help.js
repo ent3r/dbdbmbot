@@ -38,7 +38,7 @@ module.exports = {
       client.commands.forEach(element => {
         description += `\n**\`${element.name}\`**\n${element.description}`;
       });
-      responseEmbed.setDescription(description).setColor("#00FF00")
+      responseEmbed.setDescription(description).setColor("#00FF00");
     }
     message.channel.send(responseEmbed);
   }

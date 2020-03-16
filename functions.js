@@ -73,11 +73,11 @@ module.exports = {
     logEmbed
       .setTitle(type)
       .setDescription(event)
-      .setTimestamp()
+      .setTimestamp();
     if (color) {
       logEmbed.setColor(color);
     } else {
-      logEmbed.setColor("#FF0000")
+      logEmbed.setColor("#FF0000");
     }
     const logChannel = await client.channels.fetch(
       client.my_config.channels.logs
