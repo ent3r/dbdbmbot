@@ -13,7 +13,7 @@ module.exports = {
    * @param {Client} client the client object
    * @param {Message} message the whole message
    * @param {Array} args arguments (Not used here)
-   * @returns null
+   * @returns void
    */
   run: async (client, message, args) => {
     const embed = new MessageEmbed().setTitle("Pinging...").setColor("#FFCC00");
