@@ -34,14 +34,11 @@ module.exports = {
           .setColor("00FF00");
       }
     } else {
+      let description = `These are all the commands available to you. Current prefix is \`${client.my_config.prefix}\`\n`;
       client.commands.forEach(element => {
-        responseEmbed
-          .addField(
-            element.name,
-            `**Description:** ${element.description}\n**Aliases:** ${element.aliases}`
-          )
-          .setColor("#00FF00").setDescription(`These are all the commands available to you. Current prefix is \`${client.my_config.prefix}\``);
+        description += `\n**\`${element.name}\`**\n${element.description}`;
       });
+      responseEmbed.setDescription(description).setColor("#00FF00")
     }
     message.channel.send(responseEmbed);
   }
