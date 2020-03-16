@@ -2,7 +2,7 @@ const { Client, Collection, MessageEmbed } = require("discord.js");
 const { logEvent } = require("./functions");
 const parser = require("discord-command-parser");
 
-const config = require("./serverinfo.js");
+const config = require("./serverinfo.json");
 const prefix = config.prefix;
 
 const client = new Client();
