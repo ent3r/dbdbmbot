@@ -26,7 +26,7 @@ module.exports = {
         `You have been muted in guild ${message.guild.name}. No reason was provided`
       );
     }
-    logEvent(client, "Mute", `${member} was muted`, message.author)
+    logEvent(client, "Mute", `${member} was muted`);
     return;
   }
 };
