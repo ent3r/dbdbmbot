@@ -1,5 +1,5 @@
 const { Client, Collection, MessageEmbed } = require("discord.js");
-const fs = require("fs");
+const { logEvent } = require("./functions");
 const parser = require("discord-command-parser");
 
 const config = require("./serverinfo.js");
@@ -48,5 +48,13 @@ client.on("message", async message => {
     message.channel.send(errorEmbed);
   }
 });
+
+client.on("guildBanAdd", (guild, user) => {
+  logEvent(client, "Ban", `${user.tag} was banned`);
+});
+
+client.on("guildBanRemove", (guild, user) => {
+  logEvent(client, "Unban", `${user.tag} was unbanned`)
+})
 
 client.login(config.token);
