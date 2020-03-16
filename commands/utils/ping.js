@@ -20,7 +20,7 @@ module.exports = {
     message.channel.send(embed).then(m => {
       embed
         .setTitle("Pong!")
-        .setColor("#FFCC00")
+        .setColor("#00FF00")
         .setFooter(message.author.username, message.author.avatarURL)
         .setTimestamp(new Date())
         .addField(
