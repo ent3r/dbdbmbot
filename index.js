@@ -43,7 +43,6 @@ client.on("message", async message => {
       .setColor("#FF0000")
       .setTitle("Error")
       .setThumbnail()
-      .setURL("https://github.com/ent3r/dbdbmbot")
       .setDescription(`Command \`${parsed.command}\` was not found`);
     message.channel.send(errorEmbed);
   }
