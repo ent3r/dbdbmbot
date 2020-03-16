@@ -17,10 +17,14 @@ module.exports = {
     member.roles.add(client.my_config.roles.muted);
     if (args[1]) {
       message.channel.send(`Muted this user for reason: ${args[1]}`);
-      member.send(`You have been muted in guild ${message.guild.name} for reason: ${args[1]}`)
+      member.send(
+        `You have been muted in guild ${message.guild.name} for reason: ${args[1]}`
+      );
     } else {
-      message.channel.send("Muted user")
-      member.send(`You have been muted in guild ${message.guild.name}. No reason was provided`)
+      message.channel.send("Muted user");
+      member.send(
+        `You have been muted in guild ${message.guild.name}. No reason was provided`
+      );
     }
     logEvent(client, "Mute", `${member} was muted`, message.author)
     return;
