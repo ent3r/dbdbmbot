@@ -53,7 +53,7 @@ client.on("guildBanAdd", (guild, user) => {
 });
 
 client.on("guildBanRemove", (guild, user) => {
-  logEvent(client, "Unban", `${user.tag} was unbanned`)
-})
+  logEvent(client, "Unban", `${user.tag} was unbanned`);
+});
 
 client.login(config.token);
