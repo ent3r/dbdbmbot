@@ -56,4 +56,26 @@ client.on("guildBanRemove", (guild, user) => {
   logEvent(client, "Unban", `${user.tag} was unbanned`);
 });
 
+client.on("channelCreate", channel => {
+  if (channel.type === "dm") {
+    return;
+  } else if (channel.type === "text") {
+    channel.overwritePermissions([
+      {
+        id: client.my_config.roles.muted,
+        deny: ["SEND_MESSAGES"]
+      }
+    ]);
+    return;
+  } else if (channel.type === "voice") {
+    channel.overwritePermissions([
+      {
+        id: client.my_config.roles.muted,
+        deny: ["SPEAK"]
+      }
+    ]);
+    return;
+  }
+});
+
 client.login(config.token);
