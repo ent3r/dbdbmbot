@@ -65,17 +65,20 @@ module.exports = {
    * @param {Client} client the discord Client() class
    * @param {String} type what type of event it was, eg. mute or ban. This will be the title of the embed
    * @param {String} event what message should be displayed. E.g. "User was muted". This will be the description of the embed
-   * @param {User} commandAuthor who ran the command
+   * @param {String} [color=null] what color the embed should be in hex format
    * @returns null
    */
-  logEvent: async function(client, type, event, commandAuthor) {
+  logEvent: async function(client, type, event, color = null) {
     const logEmbed = new MessageEmbed();
     logEmbed
       .setTitle(type)
       .setDescription(event)
-      .setFooter(commandAuthor.tag)
       .setTimestamp()
-      .setColor("#FF0000");
+    if (color) {
+      logEmbed.setColor(color);
+    } else {
+      logEmbed.setColor("#FF0000")
+    }
     const logChannel = await client.channels.fetch(
       client.my_config.channels.logs
     );
